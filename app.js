@@ -48,7 +48,7 @@ function renderTheory(){
 
 function renderExercises(){
   const term = search.value.trim().toLowerCase();
-  const filtered = EXERCISES.filter(x => (x.question+' '+x.section).toLowerCase().includes(term));
+  const filtered = EXERCISES.filter(x => (x.question+' '+x.section+' '+(x.answer||'')+' '+(x.solution||'')).toLowerCase().includes(term));
   const grouped = {};
   filtered.forEach(x => (grouped[x.section] ||= []).push(x));
   renderCommonStats(filtered, EXERCISES, 'Câu bài tập');
@@ -61,7 +61,30 @@ function renderExercises(){
     grouped[name].forEach(item=>{
       const c=document.createElement('article');
       c.className='exercise-card';
-      c.innerHTML=`<div class="exercise-no">${item.id}</div><div class="exercise-body"><h3>${item.question}</h3><div class="exercise-tag">Bài tập lấy từ bộ đề</div></div>`;
+      const missing=(item.status||'').includes('THIẾU') || (item.status||'').includes('MÂU THUẪN');
+      c.innerHTML=`
+        <div class="exercise-top">
+          <div class="exercise-no">${item.id}</div>
+          <div class="exercise-body">
+            <h3>${item.question}</h3>
+            <div class="exercise-tag">Bài tập lấy từ bộ đề</div>
+          </div>
+        </div>
+        <div class="exercise-tools">
+          <button class="small-btn toggle-answer">👁 Xem đáp án & lời giải</button>
+        </div>
+        <div class="exercise-answer">
+          <strong>Đáp án</strong>
+          <div>${item.answer||'Chưa có'}</div>
+          <div class="exercise-solution"><strong>Lời giải</strong><div>${item.solution||'Chưa có lời giải.'}</div></div>
+          <span class="status-badge ${missing?'missing':''}">${item.status||'TÍNH TỪ DỮ KIỆN ĐỀ'}</span>
+        </div>`;
+      const btn=c.querySelector('.toggle-answer');
+      const ans=c.querySelector('.exercise-answer');
+      btn.onclick=()=>{
+        ans.classList.toggle('show');
+        btn.textContent=ans.classList.contains('show')?'🙈 Ẩn đáp án & lời giải':'👁 Xem đáp án & lời giải';
+      };
       cards.appendChild(c);
     });
     sectionsEl.appendChild(sec);
