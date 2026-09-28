@@ -1,10 +1,14 @@
 # MMH Study Site
 
-Chức năng:
-- Tìm kiếm nội dung
-- Lọc theo nguồn SLIDE / ĐÁP ÁN
+Mở `index.html` để sử dụng.
+
+## Nội dung
+- Tab Lý thuyết: 108 câu, lọc nguồn SLIDE / ĐÁP ÁN
+- Tab Bài tập: 73 câu/dạng bài lấy từ bộ đề
+- Tìm kiếm theo từ khóa
 - Mục lục theo chủ đề
-- Thu gọn / mở rộng đáp án
-- Chế độ ôn nhanh ngẫu nhiên 20 câu
+- Chế độ ôn nhanh lý thuyết
 - Giao diện sáng / tối
-- Responsive cho điện thoại
+- Responsive
+
+Có thể upload toàn bộ thư mục lên GitHub Pages.

@@ -7,64 +7,70 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header class="hero">
+<header class="hero">
+  <div>
+    <p class="eyebrow">NHẬP MÔN MẬT MÃ HỌC</p>
+    <h1>Ôn tập lý thuyết & bài tập</h1>
+    <p class="sub">Nội dung tổng hợp từ slide bài giảng và bộ đề thi đã cung cấp.</p>
+  </div>
+  <div class="hero-actions">
+    <button id="darkToggle" class="ghost">🌙 Giao diện tối</button>
+    <button id="quizBtn" class="primary">🎯 Ôn nhanh lý thuyết</button>
+  </div>
+</header>
+
+<div class="top-tabs">
+  <button class="tab-btn active" data-view="theory">📘 Lý thuyết</button>
+  <button class="tab-btn" data-view="exercise">🧮 Bài tập</button>
+</div>
+
+<main class="layout">
+  <aside class="sidebar">
+    <div class="sticky">
+      <input id="searchInput" class="search" placeholder="Tìm nội dung..." />
+      <div id="theoryFilters" class="filters">
+        <button class="chip active" data-filter="ALL">Tất cả</button>
+        <button class="chip" data-filter="SLIDE">SLIDE</button>
+        <button class="chip" data-filter="ĐÁP ÁN">ĐÁP ÁN</button>
+      </div>
+      <nav id="toc"></nav>
+    </div>
+  </aside>
+
+  <section class="content">
+    <div class="stats">
+      <div><strong id="countQuestions">0</strong><span id="labelQuestions">Câu lý thuyết</span></div>
+      <div><strong id="countSections">0</strong><span>Chủ đề</span></div>
+      <div><strong id="countVisible">0</strong><span>Đang hiển thị</span></div>
+    </div>
+    <div id="sections"></div>
+  </section>
+</main>
+
+<dialog id="quizDialog">
+  <div class="quiz-head">
     <div>
-      <p class="eyebrow">NHẬP MÔN MẬT MÃ HỌC</p>
-      <h1>Ôn tập lý thuyết</h1>
-      <p class="sub">Tổng hợp từ slide bài giảng và đáp án đã đánh dấu trong bộ đề.</p>
+      <span class="eyebrow">ÔN NHANH</span>
+      <h2 id="quizSection">Câu hỏi</h2>
     </div>
-    <div class="hero-actions">
-      <button id="darkToggle" class="ghost">🌙 Giao diện tối</button>
-      <button id="quizBtn" class="primary">🎯 Bắt đầu ôn nhanh</button>
+    <button id="closeQuiz" class="icon-btn">✕</button>
+  </div>
+  <div class="quiz-card">
+    <div class="quiz-meta">
+      <span id="quizCounter"></span>
+      <span id="quizSource" class="source-badge"></span>
     </div>
-  </header>
-
-  <main class="layout">
-    <aside class="sidebar">
-      <div class="sticky">
-        <input id="searchInput" class="search" placeholder="Tìm câu hỏi, công thức, chủ đề..." />
-        <div class="filters">
-          <button class="chip active" data-filter="ALL">Tất cả</button>
-          <button class="chip" data-filter="SLIDE">SLIDE</button>
-          <button class="chip" data-filter="ĐÁP ÁN">ĐÁP ÁN</button>
-        </div>
-        <nav id="toc"></nav>
-      </div>
-    </aside>
-
-    <section class="content">
-      <div class="stats">
-        <div><strong id="countQuestions">0</strong><span>Câu lý thuyết</span></div>
-        <div><strong id="countSections">0</strong><span>Chủ đề</span></div>
-        <div><strong id="countVisible">0</strong><span>Đang hiển thị</span></div>
-      </div>
-      <div id="sections"></div>
-    </section>
-  </main>
-
-  <dialog id="quizDialog">
-    <div class="quiz-head">
-      <div>
-        <span class="eyebrow">ÔN NHANH</span>
-        <h2 id="quizSection">Câu hỏi</h2>
-      </div>
-      <button id="closeQuiz" class="icon-btn">✕</button>
+    <h3 id="quizQuestion"></h3>
+    <div id="quizAnswer" class="quiz-answer hidden"></div>
+    <div class="quiz-actions">
+      <button id="showAnswer" class="primary">Hiện đáp án</button>
+      <button id="nextQuestion" class="ghost">Câu tiếp theo →</button>
     </div>
-    <div class="quiz-card">
-      <div class="quiz-meta">
-        <span id="quizCounter"></span>
-        <span id="quizSource" class="source-badge"></span>
-      </div>
-      <h3 id="quizQuestion"></h3>
-      <div id="quizAnswer" class="quiz-answer hidden"></div>
-      <div class="quiz-actions">
-        <button id="showAnswer" class="primary">Hiện đáp án</button>
-        <button id="nextQuestion" class="ghost">Câu tiếp theo →</button>
-      </div>
-    </div>
-  </dialog>
+  </div>
+</dialog>
 
-  <script src="data.js"></script>
-  <script src="app.js"></script>
+<script src="data.js"></script>
+<script src="exercise-data.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
